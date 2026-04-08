@@ -1,0 +1,8 @@
+{
+  "name": "AI 생물 관찰일지 (AI Bio Log)",
+  "description": "초등학생을 위한 AI 기반 생물 관찰일지 웹앱. 학생은 관찰 일지를 작성하고 AI 피드백을 받으며, 교사는 학급 활동을 관리합니다. AI 생물박사 챗봇과 AI 생물도감 기능을 제공합니다.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}

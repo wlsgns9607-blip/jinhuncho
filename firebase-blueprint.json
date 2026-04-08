@@ -1,0 +1,62 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "사용자 정보 (교사는 Google Auth, 학생은 정보 기반)",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "role": { "type": "string", "enum": ["student", "teacher"] },
+        "className": { "type": "string", "description": "학급명 (학생용)" },
+        "studentNumber": { "type": "string", "description": "번호 (학생용)" },
+        "badges": { "type": "array", "items": { "type": "string" } },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "role"]
+    },
+    "ObservationLog": {
+      "title": "Observation Log",
+      "description": "생물 관찰 일지",
+      "type": "object",
+      "properties": {
+        "studentId": { "type": "string" },
+        "studentName": { "type": "string" },
+        "className": { "type": "string" },
+        "studentNumber": { "type": "string" },
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "aiFeedback": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["studentId", "title", "content"]
+    },
+    "ClassSettings": {
+      "title": "Class Settings",
+      "description": "학급별 설정 (배지 활성화 등)",
+      "type": "object",
+      "properties": {
+        "className": { "type": "string" },
+        "teacherId": { "type": "string" },
+        "enabledBadges": { "type": "array", "items": { "type": "string" } }
+      },
+      "required": ["className", "teacherId"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "사용자 프로필"
+    },
+    "/logs/{logId}": {
+      "schema": "ObservationLog",
+      "description": "관찰 일지"
+    },
+    "/classSettings/{className}": {
+      "schema": "ClassSettings",
+      "description": "학급 설정"
+    }
+  }
+}
